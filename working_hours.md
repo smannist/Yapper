@@ -1,3 +1,3 @@
-| Date       | Hours | Description                                                       |
-| :--------- | :---- | :---------------------------------------------------------------- |
-| 30-12-2025 | 1     | Project initialization and setting up Azure for Students account. |
+|    Date    | Hours | Description                                                                                                                                                  | Todo                                                              |
+| :--------: | :---: | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
+| 30-12-2025 |  2.5  | Project initialization. Setting up Azure for Students account and function app instance. Installing Azure Functions Core Tools. Test "hello world" endpoint. | Set up proper GitHub Actions to host a demo endpoint for testing. |
