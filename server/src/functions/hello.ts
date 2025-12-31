@@ -18,6 +18,6 @@ export const hello = async (
 
 app.http("hello", {
   methods: ["GET", "POST"],
-  authLevel: "anonymous",
+  authLevel: "function",
   handler: hello,
 });
