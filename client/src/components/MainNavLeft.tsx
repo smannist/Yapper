@@ -1,11 +1,23 @@
 import CollapseHeader from "./CollapseHeader";
 import NavButtonProvidor from "./NavButtonProvidor";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import type { JSX } from "react";
 
+const MD_BREAKPOINT = 768;
+
 const MainNavLeft = (): JSX.Element => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= MD_BREAKPOINT) {
+        setIsMobileNavOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleCreateAccount = () => {
     console.log("Create account clicked.");
@@ -23,12 +35,12 @@ const MainNavLeft = (): JSX.Element => {
       />
       {/* Note: this will darken the background when the mobile nav is open, and allows
       the user to click outside of the nav to close it. */}
-      {isMobileNavOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
-          onClick={() => setIsMobileNavOpen(false)}
-        />
-      )}
+      <div
+        className={`fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300 ${
+          isMobileNavOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsMobileNavOpen(false)}
+      />
       <nav
         className={`fixed left-0 top-0 h-screen w-72 flex flex-col p-6 border-r border-gray-200 bg-white z-50 transition-transform duration-300 ease-in-out ${
           isMobileNavOpen ? "translate-x-0" : "-translate-x-full"
