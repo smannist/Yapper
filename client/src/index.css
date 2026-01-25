@@ -1,9 +1,16 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-yapper-peach: #f5a773;
   --color-yapper-coral: #f08080;
   --color-yapper-pink: #e87b98;
   --color-yapper-accent: #d1627a;
-  --color-yapper-dark: #4a4a4a;
+  --color-yapper-dark: #000000;
+  --color-yapper-light: #e5e5e5;
+  --color-yapper-bg: #f9fafb;
+  --color-yapper-bg-dark: #0f0f1a;
+  --color-yapper-surface: #ffffff;
+  --color-yapper-surface-dark: #1a1a2e;
 }

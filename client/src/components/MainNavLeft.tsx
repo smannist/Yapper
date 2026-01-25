@@ -29,10 +29,7 @@ const MainNavLeft = (): JSX.Element => {
 
   return (
     <>
-      <CollapseHeader
-        isCollapsed={isMobileNavOpen}
-        onToggle={() => setIsMobileNavOpen((p) => !p)}
-      />
+      <CollapseHeader onToggle={() => setIsMobileNavOpen((p) => !p)} />
       {/* Note: this will darken the background when the mobile nav is open, and allows
       the user to click outside of the nav to close it. */}
       <div
@@ -42,15 +39,17 @@ const MainNavLeft = (): JSX.Element => {
         onClick={() => setIsMobileNavOpen(false)}
       />
       <nav
-        className={`fixed left-0 top-0 h-screen w-72 flex flex-col p-6 border-r border-gray-200 bg-white z-50 transition-transform duration-300 ease-in-out ${
+        className={`fixed left-0 top-0 h-screen w-72 flex flex-col p-6 border-r border-gray-200 dark:border-gray-700 bg-yapper-surface dark:bg-yapper-surface-dark z-50 transition-all duration-300 ease-in-out ${
           isMobileNavOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >
         <div className="mb-8">
-          <img
-            src="/img/yapper_white.webp"
-            alt="Yapper"
-            className="w-64 h-auto"
+          <div
+            role="img"
+            aria-label="Yapper"
+            className="w-64 aspect-4/2 bg-center bg-no-repeat bg-contain
+             bg-[url('/img/yapper_white.webp')]
+             dark:bg-[url('/img/yapper_dark.webp')]"
           />
         </div>
         <NavButtonProvidor
