@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-yapper-peach: #f5a773;
+  --color-yapper-coral: #f08080;
+  --color-yapper-pink: #e87b98;
+  --color-yapper-accent: #d1627a;
+  --color-yapper-dark: #4a4a4a;
+}

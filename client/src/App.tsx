@@ -1,5 +1,13 @@
+import MainNavLeft from "./components/MainNavLeft";
+import MainContentCenter from "./components/MainContentCenter";
+
 const App = () => {
-  return <h1>Hello world</h1>;
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <MainNavLeft />
+      <MainContentCenter />
+    </div>
+  );
 };
 
 export default App;
