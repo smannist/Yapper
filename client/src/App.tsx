@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import type { JSX } from "react";
@@ -39,11 +40,11 @@ const App = (): JSX.Element => {
 
   return (
     <div
-      className={`
-        min-h-screen
-        bg-yapper-surface dark:bg-yapper-surface-dark
-        transition-colors
-      `}
+      className={clsx(
+        "min-h-screen",
+        "bg-yapper-surface dark:bg-yapper-surface-dark",
+        "transition-colors",
+      )}
     >
       {!isDesktop && <MobileNavHeader onToggle={handleToggleMobileNav} />}
       <Backdrop

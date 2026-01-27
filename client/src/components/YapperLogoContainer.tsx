@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { JSX } from "react";
 
 type YapperLogoContainerProps = {
@@ -16,12 +17,12 @@ const YapperLogoContainer = ({
     <div
       role="img"
       aria-label="Yapper"
-      className={`
-        ${sizeClasses[size]} 
-        bg-center bg-no-repeat bg-contain
-        bg-[url('/img/yapper_white.webp')]
-        dark:bg-[url('/img/yapper_dark.webp')]
-        `}
+      className={clsx(
+        sizeClasses[size],
+        "bg-center bg-no-repeat bg-contain",
+        "bg-[url('/img/yapper_white.webp')]",
+        "dark:bg-[url('/img/yapper_dark.webp')]",
+      )}
     />
   );
 };
