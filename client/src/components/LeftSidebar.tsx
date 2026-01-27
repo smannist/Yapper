@@ -16,7 +16,7 @@ const LeftSidebar = ({
   onSignIn,
 }: LeftSidebarProps): JSX.Element => {
   return (
-    <nav
+    <div
       className={clsx(
         "fixed left-0 top-0 z-50",
         "flex flex-col",
@@ -34,7 +34,7 @@ const LeftSidebar = ({
         onCreateAccount={onCreateAccount}
         onSignIn={onSignIn}
       />
-    </nav>
+    </div>
   );
 };
 

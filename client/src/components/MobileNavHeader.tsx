@@ -15,7 +15,7 @@ const MobileNavHeader = ({ onToggle }: MobileNavHeaderProps): JSX.Element => {
   };
 
   return (
-    <header
+    <div
       className={clsx(
         "fixed top-0 left-0 right-0 z-40",
         "flex items-center",
@@ -44,7 +44,7 @@ const MobileNavHeader = ({ onToggle }: MobileNavHeaderProps): JSX.Element => {
       <div className="ml-2">
         <YapperLogoContainer size="small" />
       </div>
-    </header>
+    </div>
   );
 };
 

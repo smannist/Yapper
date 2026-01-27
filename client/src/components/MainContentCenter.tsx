@@ -3,7 +3,7 @@ import type { JSX } from "react";
 
 const MainContentCenter = (): JSX.Element => {
   return (
-    <main
+    <div
       className={clsx(
         "flex items-center justify-center",
         "min-h-screen",
@@ -20,7 +20,7 @@ const MainContentCenter = (): JSX.Element => {
       >
         Yapper is coming to you soon...
       </h1>
-    </main>
+    </div>
   );
 };
 
