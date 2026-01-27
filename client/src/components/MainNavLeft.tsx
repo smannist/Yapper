@@ -1,5 +1,5 @@
 import CollapseHeader from "./CollapseHeader";
-import NavButtonProvidor from "./NavButtonProvidor";
+import NavButtonProvider from "./NavButtonProvider";
 import { useState, useEffect } from "react";
 
 import type { JSX } from "react";
@@ -52,7 +52,7 @@ const MainNavLeft = (): JSX.Element => {
              dark:bg-[url('/img/yapper_dark.webp')]"
           />
         </div>
-        <NavButtonProvidor
+        <NavButtonProvider
           onCreateAccount={handleCreateAccount}
           onSignIn={handleSignIn}
         />
