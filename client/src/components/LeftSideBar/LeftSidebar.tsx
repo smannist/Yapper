@@ -7,13 +7,17 @@ import { BASE_STYLES, MOBILE_TRANSLATE } from "./consts";
 
 import type { LeftSidebarProps } from "./types";
 
-const LeftSidebar = ({
-  isSidebarOpenMobile,
-  onCreateAccount,
-  onSignIn,
-}: LeftSidebarProps) => {
+const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const mobileState = isSidebarOpenMobile ? "open" : "closed";
+
+  const handleCreateAccount = (): void => {
+    console.log("Create account clicked.");
+  };
+
+  const handleSignIn = (): void => {
+    console.log("Sign in clicked.");
+  };
 
   return (
     <div
@@ -22,8 +26,8 @@ const LeftSidebar = ({
     >
       <YapperLogoContainer size="large" />
       <LeftSidebarButtonContainer
-        onCreateAccount={onCreateAccount}
-        onSignIn={onSignIn}
+        onCreateAccount={handleCreateAccount}
+        onSignIn={handleSignIn}
       />
     </div>
   );

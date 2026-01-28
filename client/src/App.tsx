@@ -18,23 +18,11 @@ const App = () => {
     close,
   } = useMobileSidebar();
 
-  const handleCreateAccount = (): void => {
-    console.log("Create account clicked.");
-  };
-
-  const handleSignIn = (): void => {
-    console.log("Sign in clicked.");
-  };
-
   return (
     <div className={cn(BASE_STYLES)}>
       {!isDesktop && <MobileNavHeader onToggle={toggle} />}
       <Backdrop open={!isDesktop && isMobileSidebarOpen} onDismiss={close} />
-      <LeftSidebar
-        isSidebarOpenMobile={isMobileSidebarOpen}
-        onCreateAccount={handleCreateAccount}
-        onSignIn={handleSignIn}
-      />
+      <LeftSidebar isSidebarOpenMobile={isMobileSidebarOpen} />
       <ThemeToggler />
       <MainContentCenter />
     </div>
