@@ -15,6 +15,8 @@ const BASE_BUTTON_STYLES =
   "hover:bg-yapper-hover";
 
 const BASE_ICON_STYLES = "h-5 w-5";
+const SUN_ICON_STYLES = "text-yapper-peach block dark:hidden";
+const MOON_ICON_STYLES = "text-gray-400 hidden dark:block";
 
 const ThemeToggler = (): JSX.Element => {
   return (
@@ -24,12 +26,8 @@ const ThemeToggler = (): JSX.Element => {
       aria-label="Toggle theme"
       type="button"
     >
-      <Sun
-        className={cn(BASE_ICON_STYLES, "text-yapper-peach block dark:hidden")}
-      />
-      <Moon
-        className={cn(BASE_ICON_STYLES, "text-gray-400 hidden dark:block")}
-      />
+      <Sun className={cn(BASE_ICON_STYLES, SUN_ICON_STYLES)} />
+      <Moon className={cn(BASE_ICON_STYLES, MOON_ICON_STYLES)} />
     </button>
   );
 };
