@@ -20,8 +20,8 @@
   --color-yapper-text: var(--yapper-text-value);
   --color-yapper-border: var(--yapper-border-value);
   --color-yapper-hover: var(--yapper-hover-value);
-  --color-yapper-peach: #f5a773;
-  --color-yapper-coral: #f08080;
-  --color-yapper-pink: #e87b98;
-  --color-yapper-accent: #d1627a;
+  --color-yapper-peach: oklch(79% 0.12 60); /* #f5a773 */
+  --color-yapper-coral: oklch(70% 0.13 20); /* #f08080 */
+  --color-yapper-pink: oklch(68% 0.14 0); /* #e87b98 */
+  --color-yapper-accent: oklch(58% 0.14 10); /* #d1627a */
 }
