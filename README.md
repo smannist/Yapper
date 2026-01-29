@@ -17,7 +17,7 @@
   - TBD but toss up between Azure SQL Database and Azure Cosmos DB or a combination of these two
 - Auth
   - Azure auth providors
-- Ambitious idea
+- Ambitious ideas
   - Real time pub sub if its not too expensive?
   - Some kind of recommendation algos so user sees targeted Yaps?
 
