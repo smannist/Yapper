@@ -1,18 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
 
-const MD_BREAKPOINT = "(min-width: 768px)";
+import { DESKTOP_MEDIA_QUERY } from "@/consts/breakpoints";
 
-type UseMobileSidebarReturn = {
-  isOpen: boolean;
-  isDesktop: boolean;
-  toggle: () => void;
-  close: () => void;
-};
+import type { UseMobileSidebarReturn } from "./types";
 
 export const useMobileSidebar = (): UseMobileSidebarReturn => {
   const [isOpen, setIsOpen] = useState(false);
-  const isDesktop = useMediaQuery(MD_BREAKPOINT);
+  const isDesktop = useMediaQuery(DESKTOP_MEDIA_QUERY);
 
   useEffect(() => {
     if (isDesktop) {

@@ -1,6 +1,5 @@
 import { Menu } from "lucide-react";
 
-import cn from "@/utils/cn";
 import YapperLogoContainer from "@/components/YapperLogoContainer";
 
 import {
@@ -18,14 +17,14 @@ const MobileNavHeader = ({ onToggle }: MobileNavHeaderProps) => {
   };
 
   return (
-    <div className={cn(BASE_CONTAINER_STYLES)}>
+    <div className={BASE_CONTAINER_STYLES}>
       <button
         onClick={handleClick}
-        className={cn(BASE_BUTTON_STYLES)}
+        className={BASE_BUTTON_STYLES}
         aria-label="Toggle menu"
         type="button"
       >
-        <Menu className={cn(BASE_ICON_STYLES)} />
+        <Menu className={BASE_ICON_STYLES} />
       </button>
       <div className="ml-2">
         <YapperLogoContainer size="small" />

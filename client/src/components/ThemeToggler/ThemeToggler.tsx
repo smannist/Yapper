@@ -14,7 +14,7 @@ const ThemeToggler = () => {
   return (
     <button
       onClick={toggleTheme}
-      className={cn(BASE_BUTTON_STYLES)}
+      className={BASE_BUTTON_STYLES}
       aria-label="Toggle theme"
       type="button"
     >

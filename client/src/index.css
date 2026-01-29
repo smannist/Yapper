@@ -3,3 +3,14 @@
 @import "./theme.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant desktop (@media (min-width: 1400px));
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  overflow-y: scroll;
+}

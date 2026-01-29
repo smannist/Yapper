@@ -2,13 +2,16 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 
 import YapperLogoContainer from "@/components/YapperLogoContainer";
 import LeftSidebarButtonContainer from "@/components/LeftSideBarButtonContainer";
-import cn from "@/utils/cn";
+
+import { DESKTOP_MEDIA_QUERY } from "@/consts/breakpoints";
 import { BASE_STYLES, MOBILE_TRANSLATE } from "./consts";
+
+import cn from "@/utils/cn";
 
 import type { LeftSidebarProps } from "./types";
 
 const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery(DESKTOP_MEDIA_QUERY);
   const mobileState = isSidebarOpenMobile ? "open" : "closed";
 
   const handleCreateAccount = (): void => {
