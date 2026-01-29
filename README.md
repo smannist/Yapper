@@ -17,5 +17,8 @@
   - TBD but toss up between Azure SQL Database and Azure Cosmos DB or a combination of these two
 - Auth
   - Azure auth providors
+- Ambitious idea
+  - Real time pub sub if its not too expensive?
+  - Some kind of recommendation algos so user sees targeted Yaps?
 
 The app is deployed on Microsoft Azure and can be found [here](https://y-front-g5edgsegdcemctbv.swedencentral-01.azurewebsites.net/).
