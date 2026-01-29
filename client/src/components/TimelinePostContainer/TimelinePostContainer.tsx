@@ -14,8 +14,13 @@ const TimelinePostContainer = () => {
   return (
     <div className={BASE_CONTAINER_STYLES}>
       <div className={TIMELINE_CONTAINER_STYLES}>
-        <h1 className={BASE_HEADER_STYLES}>Timeline</h1>
-        <div className={cn("divide-y divide-yapper-border", TIMELINE_SCROLL_AREA_STYLES)}>
+        <h1 className={BASE_HEADER_STYLES}>Latest Yaps</h1>
+        <div
+          className={cn(
+            "divide-y divide-yapper-border",
+            TIMELINE_SCROLL_AREA_STYLES,
+          )}
+        >
           {MOCK_POSTS.map((post) => (
             <TimelinePost key={post.id} post={post} />
           ))}
