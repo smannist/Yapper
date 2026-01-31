@@ -43,17 +43,33 @@ const TimelinePostContainer = () => {
             TIMELINE_SCROLL_AREA_STYLES,
           )}
         >
-          {isError && (
+          {isLoading ? (
+            <div
+              className="p-4 text-yapper-text transition-colors"
+              role="status"
+              aria-live="polite"
+            >
+              <div className="flex items-center gap-2 text-sm">
+                <span
+                  className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-yapper-text/30 border-t-yapper-text"
+                  aria-hidden="true"
+                />
+                <span>
+                  Loading posts... this will take a (long) while due to cold
+                  starts.
+                </span>
+              </div>
+            </div>
+          ) : isError ? (
             <div className="p-4 text-yapper-text transition-colors">
               <div className="font-semibold">Failed to load posts.</div>
               <div className="mt-2 text-sm text-yapper-text/80">
                 {error.message}
               </div>
             </div>
+          ) : (
+            data.map((post) => <TimelinePost key={post.id} post={post} />)
           )}
-          {!isLoading &&
-            !isError &&
-            data.map((post) => <TimelinePost key={post.id} post={post} />)}
         </div>
       </div>
     </div>
