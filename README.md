@@ -14,7 +14,7 @@
 - Backend
   - "Serverless" structure -> Azure App Service / Functions
 - Database
-  - TBD but toss up between Azure SQL Database and Azure Cosmos DB or a combination of these two
+  - Azure SQL DB
 - Auth
   - Azure auth providors
 - Ambitious ideas
