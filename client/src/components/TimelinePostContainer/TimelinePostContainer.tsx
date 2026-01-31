@@ -1,3 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
+import { mockPostsQueryFn, mockPostsQueryKey } from "@/queries/mockPosts.query";
+
 import cn from "@/utils/cn";
 import TimelinePost from "@/components/TimelinePost";
 
@@ -6,11 +9,26 @@ import {
   BASE_HEADER_STYLES,
   TIMELINE_CONTAINER_STYLES,
   TIMELINE_SCROLL_AREA_STYLES,
+  CACHE_TIME,
 } from "./consts";
 
-import { MOCK_POSTS } from "./mocks";
-
 const TimelinePostContainer = () => {
+  const mockPostsUrl = import.meta.env.DEV
+    ? "/api/mock-posts"
+    : `${(import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "")}/api/mock-posts`;
+
+  const {
+    data = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: mockPostsQueryKey(mockPostsUrl),
+    queryFn: mockPostsQueryFn(mockPostsUrl),
+    staleTime: CACHE_TIME, // use cache for now since it's just static mocked data at db change later!
+    gcTime: CACHE_TIME,
+  });
+
   return (
     <div className={BASE_CONTAINER_STYLES}>
       <div className={TIMELINE_CONTAINER_STYLES}>
@@ -21,9 +39,21 @@ const TimelinePostContainer = () => {
             TIMELINE_SCROLL_AREA_STYLES,
           )}
         >
-          {MOCK_POSTS.map((post) => (
-            <TimelinePost key={post.id} post={post} />
-          ))}
+          {isError && (
+            <div className="p-4 text-yapper-text transition-colors">
+              <div className="font-semibold">Failed to load posts.</div>
+              <div className="mt-2 text-sm text-yapper-text/80">
+                {error.message}
+              </div>
+              <div className="mt-2 text-xs text-yapper-text/60 break-all">
+                URL: {mockPostsUrl}
+              </div>
+            </div>
+          )}
+
+          {!isLoading &&
+            !isError &&
+            data.map((post) => <TimelinePost key={post.id} post={post} />)}
         </div>
       </div>
     </div>
