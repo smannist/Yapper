@@ -14,6 +14,9 @@ export const getPool = (): Pool => {
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    max: 5,
+    idleTimeoutMillis: 30_000,
+    connectionTimeoutMillis: 5_000,
     ssl: { rejectUnauthorized: true },
   });
 

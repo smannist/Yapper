@@ -9,11 +9,15 @@ import { getDb } from "../db";
 import { post as postSchema } from "../schemas/post";
 import { listPosts } from "../services/posts";
 
+type DrizzleDB = ReturnType<typeof getDb>;
+
+const defaultDb = getDb();
+
 export const getPosts = async (
   request: HttpRequest,
   context: InvocationContext,
+  db: DrizzleDB = defaultDb,
 ): Promise<HttpResponseInit> => {
-  const db = getDb();
   const posts = await listPosts(postSchema, db);
   return { status: 200, jsonBody: posts };
 };
