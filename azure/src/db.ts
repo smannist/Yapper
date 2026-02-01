@@ -1,20 +1,24 @@
-import mssql from "mssql";
-import { drizzle } from "drizzle-orm/node-mssql";
+import { Pool } from "pg";
+import { drizzle } from "drizzle-orm/node-postgres";
+import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 
-const createDb = (client: mssql.ConnectionPool) => drizzle({ client });
+let pool: Pool | undefined;
+let db: NodePgDatabase | undefined;
 
-let db: ReturnType<typeof createDb> | undefined;
-let poolPromise: Promise<mssql.ConnectionPool> | undefined;
+export const getPool = (): Pool => {
+  if (pool) return pool;
 
-const getConnection = async (): Promise<mssql.ConnectionPool> => {
-  if (!process.env.DATABASE_URL) throw new Error("Missing DATABASE_URL");
-  poolPromise ??= mssql.connect(process.env.DATABASE_URL);
-  return poolPromise;
+  pool = new Pool({
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    ssl: { rejectUnauthorized: true },
+  });
+
+  return pool;
 };
 
-export const getDb = async (): Promise<ReturnType<typeof createDb>> => {
-  if (db) return db;
-  const pool = await getConnection();
-  db = createDb(pool);
-  return db;
-};
+export const getDb = (): NodePgDatabase =>
+  (db ??= drizzle({ client: getPool() }));

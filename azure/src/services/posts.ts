@@ -1,12 +1,13 @@
-import type { AnyColumn, AnyTable } from "drizzle-orm";
-import { desc, getColumns } from "drizzle-orm";
-
+import { desc } from "drizzle-orm";
 import { getDb } from "../db";
 
-type PostsTable = AnyTable<{ columns: { createdAt: AnyColumn } }>;
+import type { AnyPgColumn, PgTableWithColumns } from "drizzle-orm/pg-core";
 
-export const listPosts = async (postsTable: PostsTable) => {
-  const db = await getDb();
-  const columns = getColumns(postsTable);
-  return db.select().from(postsTable).orderBy(desc(columns.createdAt));
+type PgTableWithCreatedAt = PgTableWithColumns<any> & {
+  createdAt: AnyPgColumn;
+};
+
+export const listPosts = async (table: PgTableWithCreatedAt) => {
+  const db = getDb();
+  return db.select().from(table).orderBy(desc(table.createdAt));
 };

@@ -5,14 +5,14 @@ import {
   InvocationContext,
 } from "@azure/functions";
 
-import { timelinePost } from "../schema";
+import { post as postSchema } from "../schemas/post";
 import { listPosts } from "../services/posts";
 
 export const getPosts = async (
   request: HttpRequest,
   context: InvocationContext,
 ): Promise<HttpResponseInit> => {
-  const posts = await listPosts(timelinePost);
+  const posts = await listPosts(postSchema);
   return { status: 200, jsonBody: posts };
 };
 
