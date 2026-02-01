@@ -5,6 +5,7 @@ import {
   InvocationContext,
 } from "@azure/functions";
 
+import { getDb } from "../db";
 import { post as postSchema } from "../schemas/post";
 import { listPosts } from "../services/posts";
 
@@ -12,7 +13,8 @@ export const getPosts = async (
   request: HttpRequest,
   context: InvocationContext,
 ): Promise<HttpResponseInit> => {
-  const posts = await listPosts(postSchema);
+  const db = getDb();
+  const posts = await listPosts(postSchema, db);
   return { status: 200, jsonBody: posts };
 };
 
