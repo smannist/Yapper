@@ -48,3 +48,9 @@ __pycache__/
 __blobstorage__
 __queuestorage__
 __azurite_db*__.json
+
+# requests for testing the api
+*.http
+
+# local docker compose
+docker-compose-local.yml
