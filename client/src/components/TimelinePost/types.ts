@@ -2,7 +2,7 @@ export type TimelinePostData = {
   id: string;
   userId: string;
   name: string;
-  handle: string;
+  username: string;
   avatarUrl: string;
   message: string;
   imageUrl?: string;

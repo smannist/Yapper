@@ -14,7 +14,7 @@ export const listYaps = async (db: NodePgDatabase, table: YapTable) => {
     .select({
       ...getTableColumns(table),
       name: user.name,
-      handle: user.username,
+      username: user.username,
       avatarUrl: user.avatarUrl,
     })
     .from(table)

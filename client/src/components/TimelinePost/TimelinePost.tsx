@@ -31,14 +31,14 @@ const TimelinePost = ({ post }: TimelinePostProps) => {
     <div className={CARD_STYLES}>
       <img
         src={post.avatarUrl}
-        alt={`${post.handle} avatar`}
+        alt={`${post.username} avatar`}
         className={AVATAR_STYLES}
         loading="lazy"
       />
       <div className="flex-1 min-w-0">
         <div className={META_STYLES}>
           <span className="font-semibold">{post.name}</span>
-          <span className={HANDLE_STYLES}>{post.handle}</span>
+          <span className={HANDLE_STYLES}>{post.username}</span>
         </div>
         <p className={MESSAGE_STYLES}>{post.message}</p>
         {post.imageUrl ? (

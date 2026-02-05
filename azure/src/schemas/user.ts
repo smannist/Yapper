@@ -31,8 +31,14 @@ const userInsertSchema = createInsertSchema(
 
 const passwordSchema = z
   .string()
-  .min(PASSWORD_MIN, "Password must be at least 6 characters long.")
-  .max(PASSWORD_MAX, "Password cannot contain more than 100 characters.")
+  .min(
+    PASSWORD_MIN,
+    `Password must be at least ${PASSWORD_MIN} characters long.`,
+  )
+  .max(
+    PASSWORD_MAX,
+    `Password cannot be more than ${PASSWORD_MAX} characters long.`,
+  )
   .regex(/[a-z]/, "Password must contain at least one lowercase letter.")
   .regex(/[A-Z]/, "Password must contain at least one uppercase letter.")
   .regex(/\d/, "Password must contain at least one number.")
@@ -63,7 +69,13 @@ export const registerSchema = z
 export const loginSchema = z
   .object({
     username: usernameSchema,
-    password: z.string().min(1, "Password is required.").max(100),
+    password: z
+      .string()
+      .min(1, "Password is required.")
+      .max(
+        PASSWORD_MAX,
+        `Password cannot be more than ${PASSWORD_MAX} characters long.`,
+      ),
   })
   .strict();
 
