@@ -1,25 +1,24 @@
-import {
-  app,
-  HttpRequest,
-  HttpResponseInit,
-  InvocationContext,
-} from "@azure/functions";
+import { app, HttpResponseInit } from "@azure/functions";
 
 import { getDb } from "../db";
+import { HttpError } from "../errors/http";
 import { signToken } from "../services/auth/jwt";
 import { verifyPassword } from "../services/auth/password";
 import { findUserByUsername } from "../services/users";
 import { loginSchema } from "../schemas/user";
 import { parseJsonBody } from "../utils/parseJsonBody";
+import { middleware } from "../middleware";
 
+import type { HandlerContext } from "../middleware";
 import type { TokenClaims } from "../services/auth/jwt";
+
+type DrizzleDB = ReturnType<typeof getDb>;
 
 const defaultDb = getDb();
 
 export const login = async (
-  request: HttpRequest,
-  context: InvocationContext,
-  db = defaultDb,
+  { request, context }: HandlerContext,
+  db: DrizzleDB = defaultDb,
 ): Promise<HttpResponseInit> => {
   const { username, password } = await parseJsonBody(request, loginSchema);
 
@@ -37,18 +36,13 @@ export const login = async (
     };
   }
 
-  let token: string;
-  try {
-    const claims: TokenClaims = {
-      id: user.id,
-      username: user.username,
-      name: user.name,
-    };
-    token = signToken(claims, process.env.JWT_SECRET, 60 * 60);
-  } catch (error) {
-    context.error("Failed to issue token", error);
-    return { status: 500, jsonBody: { error: "token issuance failed" } };
-  }
+  const claims: TokenClaims = {
+    id: user.id,
+    username: user.username,
+    name: user.name,
+  };
+
+  const token = signToken(claims, process.env.JWT_SECRET, 60 * 60);
 
   return {
     status: 200,
@@ -67,5 +61,5 @@ app.http("login", {
   methods: ["POST"],
   authLevel: "anonymous",
   route: "login",
-  handler: login,
+  handler: middleware((ctx) => login(ctx, defaultDb)),
 });
