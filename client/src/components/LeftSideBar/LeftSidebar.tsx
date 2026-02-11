@@ -9,7 +9,7 @@ import {
 } from "@/queries/session/session";
 
 import YapperLogoContainer from "@/components/YapperLogoContainer";
-import LeftSidebarAuthForm from "@/components/LeftSidebarForm";
+import LeftSidebarForm from "@/components/LeftSidebarForm";
 import LeftSidebarSignedIn from "@/components/LeftSidebarSignedIn";
 
 import type { LeftSidebarProps } from "./types";
@@ -46,7 +46,7 @@ const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
         {isSignedIn ? (
           <LeftSidebarSignedIn user={user} onSignOut={handleSignOut} />
         ) : (
-          <LeftSidebarAuthForm />
+          <LeftSidebarForm />
         )}
       </div>
     </div>
