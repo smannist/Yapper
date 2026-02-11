@@ -26,9 +26,8 @@ export const parseJsonBody = async <S extends z.ZodTypeAny>(
       message: issue.message,
     }));
 
-    const errorMessage =
-      issues.find((issue) => issue.message.trim().length > 0)?.message ??
-      "Invalid payload";
+    const firstMessage = issues[0];
+    const errorMessage = firstMessage?.message ?? "Invalid payload";
 
     throw new HttpError({
       status: 400,
