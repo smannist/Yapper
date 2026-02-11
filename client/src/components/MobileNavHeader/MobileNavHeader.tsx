@@ -15,17 +15,13 @@ const MobileNavHeader = ({ onToggle }: MobileNavHeaderProps) => {
     <div
       className={cn(
         "fixed left-0 right-0 top-0 z-40 flex h-16 items-center px-4",
-        "border-b border-yapper-border bg-yapper-surface",
-        "transition-colors",
+        "border-b yapper-border-default yapper-surface",
+        "yapper-surface-transition",
       )}
     >
       <button
         onClick={handleClick}
-        className={cn(
-          "rounded-lg p-2",
-          "cursor-pointer transition-colors",
-          "hover:bg-yapper-hover",
-        )}
+        className={cn("rounded-lg p-2", "yapper-hoverable-surface")}
         aria-label="Toggle menu"
         type="button"
       >

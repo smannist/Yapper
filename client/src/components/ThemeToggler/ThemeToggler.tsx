@@ -9,9 +9,8 @@ const ThemeToggler = () => {
       onClick={toggleTheme}
       className={cn(
         "fixed bottom-4 right-4 z-30 flex items-center justify-center",
-        "rounded-full border border-yapper-border bg-yapper-surface p-3 shadow-lg",
-        "cursor-pointer transition-colors",
-        "hover:bg-yapper-hover",
+        "rounded-full p-3 shadow-lg",
+        "yapper-surface-panel yapper-hoverable-surface",
       )}
       aria-label="Toggle theme"
       type="button"

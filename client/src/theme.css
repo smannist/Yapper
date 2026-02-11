@@ -1,5 +1,6 @@
 :root {
   --yapper-surface-value: oklch(100% 0 0);
+  --yapper-surface-strong-value: oklch(96% 0.01 250);
   --yapper-bg-value: oklch(98.5% 0.002 247);
   --yapper-text-value: oklch(0% 0 0);
   --yapper-border-value: oklch(90% 0.01 250);
@@ -8,6 +9,7 @@
 
 .dark {
   --yapper-surface-value: oklch(22% 0.035 285);
+  --yapper-surface-strong-value: oklch(34% 0.02 260);
   --yapper-bg-value: oklch(11% 0.025 285);
   --yapper-text-value: oklch(92% 0 0);
   --yapper-border-value: oklch(34% 0.02 260);
@@ -16,6 +18,7 @@
 
 @theme {
   --color-yapper-surface: var(--yapper-surface-value);
+  --color-yapper-surface-strong: var(--yapper-surface-strong-value);
   --color-yapper-bg: var(--yapper-bg-value);
   --color-yapper-text: var(--yapper-text-value);
   --color-yapper-border: var(--yapper-border-value);
@@ -24,4 +27,86 @@
   --color-yapper-coral: oklch(70% 0.13 20);
   --color-yapper-pink: oklch(68% 0.14 0);
   --color-yapper-accent: oklch(58% 0.14 10);
+}
+
+@layer components {
+  .yapper-surface {
+    @apply bg-yapper-surface;
+  }
+
+  .yapper-surface-transition {
+    @apply transition-colors;
+  }
+
+  .yapper-border-default {
+    @apply border-yapper-border;
+  }
+
+  .yapper-surface-panel {
+    @apply border border-yapper-border bg-yapper-surface;
+  }
+
+  .yapper-hoverable-surface {
+    @apply cursor-pointer transition-colors hover:bg-yapper-hover;
+  }
+
+  .yapper-left-sidebar {
+    @apply fixed left-0 top-0 z-50 flex h-dvh w-72 flex-col;
+    @apply overflow-x-hidden overflow-y-hidden overscroll-contain touch-pan-y;
+    @apply border-r border-yapper-border bg-yapper-surface p-6;
+    @apply transition-all duration-300 ease-in-out;
+    @apply desktop:h-screen desktop:translate-x-0 desktop:overflow-visible;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .yapper-left-sidebar-mobile-open {
+    @apply max-h-dvh translate-x-0 overflow-y-auto;
+  }
+
+  .yapper-left-sidebar-mobile-closed {
+    @apply -translate-x-full overflow-y-hidden;
+  }
+
+  .yapper-signature-cta {
+    @apply w-full cursor-pointer rounded-full py-3 font-semibold text-white;
+    @apply bg-linear-to-r from-yapper-peach to-yapper-pink;
+    @apply transition-opacity hover:opacity-90;
+  }
+
+  .yapper-signature-cta:disabled {
+    @apply cursor-not-allowed opacity-70;
+  }
+
+  .yapper-logo {
+    background-image: url("/img/yapper_white.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .yapper-logo-small {
+    @apply h-10 w-32;
+  }
+
+  .yapper-logo-large {
+    @apply aspect-4/2 w-64;
+  }
+
+  .dark .yapper-logo {
+    background-image: url("/img/yapper_dark.webp");
+  }
+
+  .yapper-timeline-action-button {
+    @apply inline-flex items-center whitespace-nowrap rounded-full;
+    @apply gap-1 px-2 py-1 text-[11px] font-medium sm:gap-2 sm:px-3 sm:py-1.5 sm:text-sm;
+    @apply border border-transparent bg-yapper-surface;
+    @apply text-yapper-text/70 dark:text-yapper-text;
+    @apply transition-colors hover:border-yapper-border hover:bg-yapper-surface-strong;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yapper-text/30;
+    @apply sm:cursor-pointer;
+  }
+
+  .yapper-timeline-action-icon {
+    @apply h-3.5 w-3.5 sm:h-4 sm:w-4;
+  }
 }

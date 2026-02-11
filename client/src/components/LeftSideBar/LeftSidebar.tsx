@@ -33,14 +33,10 @@ const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
   return (
     <div
       className={cn(
-        "fixed left-0 top-0 z-50 flex h-dvh w-72 flex-col",
-        "overflow-x-hidden overflow-y-hidden overscroll-contain touch-pan-y [-webkit-overflow-scrolling:touch]",
-        "border-r border-yapper-border bg-yapper-surface p-6",
-        "transition-all duration-300 ease-in-out",
-        "desktop:h-screen desktop:translate-x-0 desktop:overflow-visible",
+        "yapper-left-sidebar",
         isSidebarOpenMobile
-          ? "max-h-dvh translate-x-0 overflow-y-auto"
-          : "-translate-x-full overflow-y-hidden",
+          ? "yapper-left-sidebar-mobile-open"
+          : "yapper-left-sidebar-mobile-closed",
       )}
       aria-hidden={!isDesktop && !isSidebarOpenMobile}
     >

@@ -4,16 +4,6 @@ import cn from "@/utils/cn";
 import type { TimelineYapProps } from "./types";
 import type { MouseEventHandler } from "react";
 
-const ACTION_BUTTON_STYLES = cn(
-  "inline-flex items-center whitespace-nowrap rounded-full",
-  "gap-1 px-2 py-1 text-[11px] font-medium sm:gap-2 sm:px-3 sm:py-1.5 sm:text-sm",
-  "border border-transparent bg-yapper-surface",
-  "text-yapper-text/70 dark:text-yapper-text",
-  "transition-colors hover:border-yapper-border hover:bg-yapper-surface-strong",
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yapper-text/30",
-  "sm:cursor-pointer",
-);
-
 const TimelineYap = ({ yap }: TimelineYapProps) => {
   const handleReply: MouseEventHandler<HTMLButtonElement> = () => {
     console.log(`Reply pressed for post ${yap.id}.`);
@@ -78,28 +68,28 @@ const TimelineYap = ({ yap }: TimelineYapProps) => {
           <button
             type="button"
             onClick={handleReply}
-            className={ACTION_BUTTON_STYLES}
+            className="yapper-timeline-action-button"
             aria-label="Reply"
           >
-            <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <MessageCircle className="yapper-timeline-action-icon" />
             <span>{yap.replies}</span>
           </button>
           <button
             type="button"
             onClick={handleRepost}
-            className={ACTION_BUTTON_STYLES}
+            className="yapper-timeline-action-button"
             aria-label="Repost"
           >
-            <Repeat2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <Repeat2 className="yapper-timeline-action-icon" />
             <span>{yap.reposts}</span>
           </button>
           <button
             type="button"
             onClick={handleLike}
-            className={ACTION_BUTTON_STYLES}
+            className="yapper-timeline-action-button"
             aria-label="Like"
           >
-            <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <Heart className="yapper-timeline-action-icon" />
             <span>{yap.likes}</span>
           </button>
         </div>

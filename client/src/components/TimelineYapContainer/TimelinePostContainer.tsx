@@ -36,8 +36,8 @@ const TimelineYapContainer = () => {
         <div
           className={cn(
             "divide-y divide-yapper-border",
-            "overflow-hidden rounded-2xl border border-yapper-border",
-            "bg-yapper-surface shadow-sm",
+            "overflow-hidden rounded-2xl shadow-sm",
+            "yapper-surface-panel",
           )}
         >
           {isLoading ? (

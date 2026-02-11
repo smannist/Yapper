@@ -16,7 +16,7 @@ const App = () => {
   } = useMobileSidebar();
 
   return (
-    <div className="min-h-screen bg-yapper-surface transition-colors">
+    <div className="min-h-screen yapper-surface yapper-surface-transition">
       {!isDesktop && isMobileSidebarOpen ? <BodyScrollLock /> : null}
       {!isDesktop && <MobileNavHeader onToggle={toggle} />}
       <Backdrop open={!isDesktop && isMobileSidebarOpen} onDismiss={close} />

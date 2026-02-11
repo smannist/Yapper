@@ -8,13 +8,7 @@ const LeftSidebarButton = ({ variant, onClick }: LeftSidebarButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className={cn(
-        "w-full rounded-full py-3",
-        "font-semibold text-white",
-        "bg-linear-to-r from-yapper-peach to-yapper-pink",
-        "cursor-pointer transition-opacity",
-        "hover:opacity-90",
-      )}
+      className={cn("yapper-signature-cta")}
       type="button"
     >
       {BUTTON_VARIANT_LABELS[variant]}

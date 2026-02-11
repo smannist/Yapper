@@ -104,12 +104,7 @@ const LeftSidebarForm = () => {
           return (
             <button
               type="submit"
-              className={cn(
-                "mt-2 w-full rounded-full py-3 text-sm font-semibold",
-                "bg-linear-to-r from-yapper-peach to-yapper-pink text-white",
-                "transition-opacity hover:opacity-90",
-                "disabled:cursor-not-allowed disabled:opacity-70",
-              )}
+              className={cn("mt-2 text-sm", "yapper-signature-cta")}
               disabled={signInMutation.isPending || !canSubmit}
             >
               {signInMutation.isPending
