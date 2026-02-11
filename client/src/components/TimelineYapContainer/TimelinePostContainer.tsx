@@ -5,13 +5,7 @@ import cn from "@/utils/cn";
 import getUrl from "@/utils/getUrl";
 import TimelineYap from "@/components/TimelineYap";
 
-import {
-  BASE_CONTAINER_STYLES,
-  BASE_HEADER_STYLES,
-  TIMELINE_CONTAINER_STYLES,
-  TIMELINE_SCROLL_AREA_STYLES,
-  CACHE_TIME,
-} from "./consts";
+const CACHE_TIME = 24 * 60 * 60 * 1000;
 
 const TimelineYapContainer = () => {
   const {
@@ -30,13 +24,20 @@ const TimelineYapContainer = () => {
   });
 
   return (
-    <div className={BASE_CONTAINER_STYLES}>
-      <div className={TIMELINE_CONTAINER_STYLES}>
-        <h1 className={BASE_HEADER_STYLES}>Latest Yaps</h1>
+    <div className={cn("flex min-h-screen px-4 pt-20", "md:px-6 md:pt-6")}>
+      <div className={cn("mx-auto w-full max-w-2xl space-y-6")}>
+        <h1
+          className={cn(
+            "text-small font-bold text-yapper-text transition-colors",
+          )}
+        >
+          Latest Yaps
+        </h1>
         <div
           className={cn(
             "divide-y divide-yapper-border",
-            TIMELINE_SCROLL_AREA_STYLES,
+            "overflow-hidden rounded-2xl border border-yapper-border",
+            "bg-yapper-surface shadow-sm",
           )}
         >
           {isLoading ? (

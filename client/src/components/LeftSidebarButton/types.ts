@@ -1,6 +1,4 @@
 export type LeftSidebarButtonProps = {
-  variant: "create" | "signIn" | "signOut";
+  variant: "signIn" | "signOut";
   onClick: () => void;
 };
-
-export type VariantType = { label: string; styles: string };

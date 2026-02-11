@@ -1,14 +1,16 @@
 import cn from "@/utils/cn";
-import { BASE_STYLES, BACKDROP_VISIBILITY } from "./consts";
 
 import type { BackdropProps } from "./types";
 
 const Backdrop = ({ open, onDismiss }: BackdropProps) => {
-  const isActive = open ? "active" : "inactive";
-
   return (
     <div
-      className={cn(BASE_STYLES, BACKDROP_VISIBILITY[isActive])}
+      className={cn(
+        "fixed inset-0 z-40 desktop:hidden",
+        "bg-black/50",
+        "transition-opacity duration-300",
+        open ? "opacity-100" : "pointer-events-none opacity-0",
+      )}
       onClick={onDismiss}
       aria-hidden={!open}
     />

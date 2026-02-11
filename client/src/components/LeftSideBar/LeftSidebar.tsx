@@ -12,8 +12,6 @@ import YapperLogoContainer from "@/components/YapperLogoContainer";
 import LeftSidebarAuthForm from "@/components/LeftSidebarForm";
 import LeftSidebarSignedIn from "@/components/LeftSidebarSignedIn";
 
-import { BASE_STYLES, MOBILE_TRANSLATE } from "./consts";
-
 import type { LeftSidebarProps } from "./types";
 
 export const DESKTOP_MIN_WIDTH_PX = 1400;
@@ -27,8 +25,6 @@ const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
   const isSignedIn = session !== null;
   const user = session?.username ?? "";
 
-  const mobileState = isSidebarOpenMobile ? "open" : "closed";
-
   const handleSignOut = () => {
     clearSessionStorage();
     queryClient.setQueryData(sessionQueryKey(), null);
@@ -36,7 +32,16 @@ const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
 
   return (
     <div
-      className={cn(BASE_STYLES, MOBILE_TRANSLATE[mobileState])}
+      className={cn(
+        "fixed left-0 top-0 z-50 flex h-dvh w-72 flex-col",
+        "overflow-x-hidden overflow-y-hidden overscroll-contain touch-pan-y [-webkit-overflow-scrolling:touch]",
+        "border-r border-yapper-border bg-yapper-surface p-6",
+        "transition-all duration-300 ease-in-out",
+        "desktop:h-screen desktop:translate-x-0 desktop:overflow-visible",
+        isSidebarOpenMobile
+          ? "max-h-dvh translate-x-0 overflow-y-auto"
+          : "-translate-x-full overflow-y-hidden",
+      )}
       aria-hidden={!isDesktop && !isSidebarOpenMobile}
     >
       <YapperLogoContainer size="large" />

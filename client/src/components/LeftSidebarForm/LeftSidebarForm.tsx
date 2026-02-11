@@ -3,25 +3,22 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { signInMutationKey, signInMutationFn } from "@/mutations/login/login";
 
-import getUrl from "@/utils/getUrl";
+import { BUTTON_VARIANT_LABELS } from "@/components/LeftSidebarButton/labels";
 import {
   writeSessionToStorage,
   sessionQueryKey,
 } from "@/queries/session/session";
 
-import {
-  CREATE_ACCOUNT_CTA_TEXT,
-  CTA_TEXT_STYLES,
-  FORM_STYLES,
-  SIGN_IN_SUCCESS_MESSAGE,
-  SUBMIT_BUTTON_LABEL,
-  SUBMIT_BUTTON_PENDING_LABEL,
-  SUBMIT_BUTTON_STYLES,
-} from "./consts";
 import FormField from "./FormField";
 import StatusMessage from "./StatusMessage";
+import getUrl from "@/utils/getUrl";
+import cn from "@/utils/cn";
 
 import type { LeftSidebarFormValues, LoginStatus } from "./types";
+
+const SIGN_IN_SUCCESS_MESSAGE = "Signed in successfully.";
+const SUBMIT_BUTTON_PENDING_LABEL = "Signing in...";
+const CREATE_ACCOUNT_CTA_TEXT = "Don't have an account? Create one!"; // TODO: create sign up functionality later
 
 const hasSignInCredentials = (username: string, password: string): boolean =>
   username.trim().length > 0 && password.length > 0;
@@ -77,7 +74,7 @@ const LeftSidebarForm = () => {
 
   return (
     <form
-      className={FORM_STYLES}
+      className={cn("space-y-2")}
       onSubmit={(event) => {
         event.preventDefault();
         void leftSidebarForm.handleSubmit();
@@ -107,17 +104,24 @@ const LeftSidebarForm = () => {
           return (
             <button
               type="submit"
-              className={SUBMIT_BUTTON_STYLES}
+              className={cn(
+                "mt-2 w-full rounded-full py-3 text-sm font-semibold",
+                "bg-linear-to-r from-yapper-peach to-yapper-pink text-white",
+                "transition-opacity hover:opacity-90",
+                "disabled:cursor-not-allowed disabled:opacity-70",
+              )}
               disabled={signInMutation.isPending || !canSubmit}
             >
               {signInMutation.isPending
                 ? SUBMIT_BUTTON_PENDING_LABEL
-                : SUBMIT_BUTTON_LABEL}
+                : BUTTON_VARIANT_LABELS.signIn}
             </button>
           );
         }}
       </leftSidebarForm.Subscribe>
-      <p className={CTA_TEXT_STYLES}>{CREATE_ACCOUNT_CTA_TEXT}</p>
+      <p className={cn("text-center text-sm text-yapper-text/70")}>
+        {CREATE_ACCOUNT_CTA_TEXT}
+      </p>
     </form>
   );
 };

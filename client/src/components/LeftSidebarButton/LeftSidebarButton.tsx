@@ -1,18 +1,23 @@
 import cn from "@/utils/cn";
-import { BASE_STYLES, VARIANTS } from "./consts";
+
+import { BUTTON_VARIANT_LABELS } from "./labels";
 
 import type { LeftSidebarButtonProps } from "./types";
 
 const LeftSidebarButton = ({ variant, onClick }: LeftSidebarButtonProps) => {
-  const btnVariants = VARIANTS[variant];
-
   return (
     <button
       onClick={onClick}
-      className={cn(BASE_STYLES, btnVariants.styles)}
+      className={cn(
+        "w-full rounded-full py-3",
+        "font-semibold text-white",
+        "bg-linear-to-r from-yapper-peach to-yapper-pink",
+        "cursor-pointer transition-opacity",
+        "hover:opacity-90",
+      )}
       type="button"
     >
-      {btnVariants.label}
+      {BUTTON_VARIANT_LABELS[variant]}
     </button>
   );
 };
