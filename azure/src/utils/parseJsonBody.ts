@@ -21,14 +21,20 @@ export const parseJsonBody = async <S extends z.ZodTypeAny>(
   const parsed = schema.safeParse(body);
 
   if (!parsed.success) {
+    const issues = parsed.error.issues.map((issue) => ({
+      path: issue.path.join("."),
+      message: issue.message,
+    }));
+
+    const errorMessage =
+      issues.find((issue) => issue.message.trim().length > 0)?.message ??
+      "Invalid payload";
+
     throw new HttpError({
       status: 400,
       jsonBody: {
-        error: "Invalid payload",
-        details: parsed.error.issues.map((issue) => ({
-          path: issue.path.join("."),
-          message: issue.message,
-        })),
+        error: errorMessage,
+        issues,
       },
     });
   }
