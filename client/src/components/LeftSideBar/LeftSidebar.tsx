@@ -1,25 +1,37 @@
 import { useMediaQuery } from "@uidotdev/usehooks";
-
-import YapperLogoContainer from "@/components/YapperLogoContainer";
-import LeftSidebarButtonContainer from "@/components/LeftSideBarButtonContainer";
-
-import { DESKTOP_MEDIA_QUERY } from "@/consts/breakpoints";
-import { BASE_STYLES, MOBILE_TRANSLATE } from "./consts";
+import { useQueryClient } from "@tanstack/react-query";
 
 import cn from "@/utils/cn";
+import {
+  useSession,
+  sessionQueryKey,
+  clearSessionStorage,
+} from "@/queries/session/session";
+
+import YapperLogoContainer from "@/components/YapperLogoContainer";
+import LeftSidebarAuthForm from "@/components/LeftSidebarForm";
+import LeftSidebarSignedIn from "@/components/LeftSidebarSignedIn";
+
+import { BASE_STYLES, MOBILE_TRANSLATE } from "./consts";
 
 import type { LeftSidebarProps } from "./types";
 
+export const DESKTOP_MIN_WIDTH_PX = 1400;
+export const DESKTOP_MEDIA_QUERY = `(min-width: ${DESKTOP_MIN_WIDTH_PX}px)`;
+
 const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
   const isDesktop = useMediaQuery(DESKTOP_MEDIA_QUERY);
+  const queryClient = useQueryClient();
+  const { data: session } = useSession();
+
+  const isSignedIn = session !== null;
+  const user = session?.username ?? "";
+
   const mobileState = isSidebarOpenMobile ? "open" : "closed";
 
-  const handleCreateAccount = (): void => {
-    console.log("Create account clicked.");
-  };
-
-  const handleSignIn = (): void => {
-    console.log("Sign in clicked.");
+  const handleSignOut = () => {
+    clearSessionStorage();
+    queryClient.setQueryData(sessionQueryKey(), null);
   };
 
   return (
@@ -28,10 +40,13 @@ const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
       aria-hidden={!isDesktop && !isSidebarOpenMobile}
     >
       <YapperLogoContainer size="large" />
-      <LeftSidebarButtonContainer
-        onCreateAccount={handleCreateAccount}
-        onSignIn={handleSignIn}
-      />
+      <div className="mt-auto w-full">
+        {isSignedIn ? (
+          <LeftSidebarSignedIn user={user} onSignOut={handleSignOut} />
+        ) : (
+          <LeftSidebarAuthForm />
+        )}
+      </div>
     </div>
   );
 };

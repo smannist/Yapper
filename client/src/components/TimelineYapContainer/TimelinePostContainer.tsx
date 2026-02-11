@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { postsQueryFn, postsQueryKey } from "@/queries/posts.query";
+import { yapsQueryFn, yapsQueryKey } from "@/queries/yaps/yaps";
 
 import cn from "@/utils/cn";
-import TimelinePost from "@/components/TimelinePost";
+import getUrl from "@/utils/getUrl";
+import TimelineYap from "@/components/TimelineYap";
 
 import {
   BASE_CONTAINER_STYLES,
@@ -12,19 +13,15 @@ import {
   CACHE_TIME,
 } from "./consts";
 
-const TimelinePostContainer = () => {
-  const postsUrl = import.meta.env.DEV
-    ? "/api/posts"
-    : `${(import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "")}/api/posts`;
-
+const TimelineYapContainer = () => {
   const {
     data = [],
     isLoading,
     isError,
     error,
   } = useQuery({
-    queryKey: postsQueryKey(postsUrl),
-    queryFn: postsQueryFn(postsUrl, CACHE_TIME),
+    queryKey: yapsQueryKey(getUrl("/api/yaps")),
+    queryFn: yapsQueryFn(getUrl("/api/yaps"), CACHE_TIME),
     staleTime: CACHE_TIME,
     gcTime: CACHE_TIME,
     refetchOnWindowFocus: false,
@@ -67,7 +64,7 @@ const TimelinePostContainer = () => {
               No one has yapped yet.
             </div>
           ) : (
-            data.map((post) => <TimelinePost key={post.id} post={post} />)
+            data.map((yap) => <TimelineYap key={yap.id} yap={yap} />)
           )}
         </div>
       </div>
@@ -75,4 +72,4 @@ const TimelinePostContainer = () => {
   );
 };
 
-export default TimelinePostContainer;
+export default TimelineYapContainer;

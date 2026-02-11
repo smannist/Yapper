@@ -7,7 +7,7 @@ export const AVATAR_STYLES =
 export const META_STYLES =
   "flex flex-wrap items-center gap-x-2 gap-y-1 min-w-0 text-small text-yapper-text";
 
-export const HANDLE_STYLES = "text-yapper-muted truncate max-w-full";
+export const HANDLE_STYLES = "truncate max-w-full text-gray-500 dark:text-gray-400";
 
 export const MESSAGE_STYLES = "mt-1 text-base text-yapper-text break-words";
 

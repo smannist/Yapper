@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
 
-import { DESKTOP_MEDIA_QUERY } from "@/consts/breakpoints";
-
 import type { UseMobileSidebarReturn } from "./types";
+
+export const DESKTOP_MIN_WIDTH_PX = 1400;
+export const DESKTOP_MEDIA_QUERY = `(min-width: ${DESKTOP_MIN_WIDTH_PX}px)`;
 
 export const useMobileSidebar = (): UseMobileSidebarReturn => {
   const [isOpen, setIsOpen] = useState(false);

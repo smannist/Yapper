@@ -11,39 +11,39 @@ import {
   META_STYLES,
 } from "./consts";
 
-import type { TimelinePostProps } from "./types";
+import type { TimelineYapProps } from "./types";
 import type { MouseEventHandler } from "react";
 
-const TimelinePost = ({ post }: TimelinePostProps) => {
+const TimelineYap = ({ yap }: TimelineYapProps) => {
   const handleReply: MouseEventHandler<HTMLButtonElement> = () => {
-    console.log(`Reply pressed for post ${post.id}.`);
+    console.log(`Reply pressed for post ${yap.id}.`);
   };
 
   const handleRepost: MouseEventHandler<HTMLButtonElement> = () => {
-    console.log(`Repost pressed for post ${post.id}.`);
+    console.log(`Repost pressed for post ${yap.id}.`);
   };
 
   const handleLike: MouseEventHandler<HTMLButtonElement> = () => {
-    console.log(`Like pressed for post ${post.id}.`);
+    console.log(`Like pressed for post ${yap.id}.`);
   };
 
   return (
     <div className={CARD_STYLES}>
       <img
-        src={post.avatarUrl}
-        alt={`${post.username} avatar`}
+        src={yap.avatarUrl}
+        alt={`${yap.username} avatar`}
         className={AVATAR_STYLES}
         loading="lazy"
       />
       <div className="flex-1 min-w-0">
         <div className={META_STYLES}>
-          <span className="font-semibold">{post.name}</span>
-          <span className={HANDLE_STYLES}>{post.username}</span>
+          <span className="font-semibold">{yap.name}</span>
+          <span className={HANDLE_STYLES}>{"@" + yap.username}</span>
         </div>
-        <p className={MESSAGE_STYLES}>{post.message}</p>
-        {post.imageUrl ? (
+        <p className={MESSAGE_STYLES}>{yap.message}</p>
+        {yap.imageUrl ? (
           <img
-            src={post.imageUrl}
+            src={yap.imageUrl}
             alt="Post media"
             className={MEDIA_STYLES}
             loading="lazy"
@@ -57,7 +57,7 @@ const TimelinePost = ({ post }: TimelinePostProps) => {
             aria-label="Reply"
           >
             <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            <span>{post.replies}</span>
+            <span>{yap.replies}</span>
           </button>
           <button
             type="button"
@@ -66,7 +66,7 @@ const TimelinePost = ({ post }: TimelinePostProps) => {
             aria-label="Repost"
           >
             <Repeat2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            <span>{post.reposts}</span>
+            <span>{yap.reposts}</span>
           </button>
           <button
             type="button"
@@ -75,7 +75,7 @@ const TimelinePost = ({ post }: TimelinePostProps) => {
             aria-label="Like"
           >
             <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            <span>{post.likes}</span>
+            <span>{yap.likes}</span>
           </button>
         </div>
       </div>
@@ -83,4 +83,4 @@ const TimelinePost = ({ post }: TimelinePostProps) => {
   );
 };
 
-export default TimelinePost;
+export default TimelineYap;

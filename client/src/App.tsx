@@ -1,11 +1,10 @@
 import MobileNavHeader from "@/components/MobileNavHeader";
 import Backdrop from "@/components/Backdrop";
 import LeftSidebar from "@/components/LeftSideBar";
-import TimelinePostContainer from "@/components/TimelinePostContainer";
+import TimelineYapContainer from "@/components/TimelineYapContainer";
 import ThemeToggler from "@/components/ThemeToggler";
 
 import { useMobileSidebar } from "@/hooks";
-import { APP_BASE_STYLES } from "@/consts/app";
 import { BodyScrollLock } from "@/utils/bs";
 
 const App = () => {
@@ -17,13 +16,13 @@ const App = () => {
   } = useMobileSidebar();
 
   return (
-    <div className={APP_BASE_STYLES}>
+    <div className="min-h-screen bg-yapper-surface transition-colors">
       {!isDesktop && isMobileSidebarOpen ? <BodyScrollLock /> : null}
       {!isDesktop && <MobileNavHeader onToggle={toggle} />}
       <Backdrop open={!isDesktop && isMobileSidebarOpen} onDismiss={close} />
       <LeftSidebar isSidebarOpenMobile={isMobileSidebarOpen} />
       <ThemeToggler />
-      <TimelinePostContainer />
+      <TimelineYapContainer />
     </div>
   );
 };

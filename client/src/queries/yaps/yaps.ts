@@ -1,25 +1,21 @@
 // this will be gone later, so will cache
-import type { QueryFunction } from "@tanstack/react-query";
-import type { TimelinePostData } from "@/components/TimelinePost/types";
+import { isYapsCacheEntry, isTimelineYapArray } from "./guards";
 
-export const postsQueryKey = (url: string) => ["posts", url] as const;
+import type { QueryFunction } from "@tanstack/react-query";
+import type { TimelineYap } from "@/components/TimelineYap/types";
 
 // use local cache for now, dont really need it but just testing -> delete later.
-export const postsQueryFn =
-  (url: string, cacheTimeMs = 0): QueryFunction<TimelinePostData[]> =>
+export const yapsQueryFn =
+  (url: string, cacheTimeMs = 0): QueryFunction<TimelineYap[]> =>
   async () => {
     const cacheKey = `posts:${url}`;
     if (cacheTimeMs > 0 && typeof window !== "undefined") {
       try {
         const cached = localStorage.getItem(cacheKey);
         if (cached) {
-          const parsed = JSON.parse(cached) as {
-            timestamp: number;
-            data: TimelinePostData[];
-          };
+          const parsed: unknown = JSON.parse(cached);
           if (
-            parsed &&
-            Array.isArray(parsed.data) &&
+            isYapsCacheEntry(parsed) &&
             Date.now() - parsed.timestamp < cacheTimeMs
           ) {
             return parsed.data;
@@ -31,13 +27,19 @@ export const postsQueryFn =
     }
 
     const postsResponse = await fetch(url);
+
     if (!postsResponse.ok) {
       throw new Error(
         `Failed to fetch posts: ${postsResponse.status} ${postsResponse.statusText}`,
       );
     }
 
-    const data = (await postsResponse.json()) as TimelinePostData[];
+    const data: unknown = await postsResponse.json().catch(() => null);
+
+    if (!isTimelineYapArray(data)) {
+      throw new Error("Invalid yaps response from server.");
+    }
+
     if (cacheTimeMs > 0 && typeof window !== "undefined") {
       try {
         localStorage.setItem(
@@ -45,9 +47,11 @@ export const postsQueryFn =
           JSON.stringify({ timestamp: Date.now(), data }),
         );
       } catch {
-        // Ignore write failures (storage quota, privacy mode, etc).
+        //
       }
     }
 
     return data;
   };
+
+export const yapsQueryKey = (url: string) => ["yaps", url] as const;

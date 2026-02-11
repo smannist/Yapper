@@ -1,7 +1,6 @@
 import { app, HttpResponseInit } from "@azure/functions";
 
 import { getDb } from "../db";
-import { HttpError } from "../errors/http";
 import { signToken } from "../services/auth/jwt";
 import { verifyPassword } from "../services/auth/password";
 import { findUserByUsername } from "../services/users";
@@ -49,7 +48,6 @@ export const login = async (
     jsonBody: {
       token,
       user: {
-        id: user.id,
         name: user.name,
         username: user.username,
       },

@@ -22,6 +22,6 @@ export const getYaps = async (
 app.http("getYaps", {
   methods: ["GET"],
   authLevel: "anonymous",
-  route: "posts",
+  route: "yaps",
   handler: middleware((ctx) => getYaps(ctx, defaultDb)),
 });

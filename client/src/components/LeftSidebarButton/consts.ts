@@ -12,6 +12,11 @@ export const VARIANTS = {
   signIn: {
     label: "Sign in",
     styles:
-      "border-2 border-yapper-pink text-yapper-text hover:bg-yapper-pink/10",
+      "bg-gradient-to-r from-yapper-peach to-yapper-pink text-white hover:opacity-90",
+  },
+  signOut: {
+    label: "Sign out",
+    styles:
+      "bg-gradient-to-r from-yapper-peach to-yapper-pink text-white hover:opacity-90",
   },
 } satisfies Record<LeftSidebarButtonProps["variant"], VariantType>;
