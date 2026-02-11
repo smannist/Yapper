@@ -34,9 +34,10 @@ const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
     <div
       className={cn(
         "yapper-left-sidebar",
-        isSidebarOpenMobile
-          ? "yapper-left-sidebar-mobile-open"
-          : "yapper-left-sidebar-mobile-closed",
+        !isDesktop &&
+          (isSidebarOpenMobile
+            ? "yapper-left-sidebar-mobile-open"
+            : "yapper-left-sidebar-mobile-closed"),
       )}
       aria-hidden={!isDesktop && !isSidebarOpenMobile}
     >
