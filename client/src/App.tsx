@@ -20,7 +20,10 @@ const App = () => {
       {!isDesktop && isMobileSidebarOpen ? <BodyScrollLock /> : null}
       {!isDesktop && <MobileNavHeader onToggle={toggle} />}
       <Backdrop open={!isDesktop && isMobileSidebarOpen} onDismiss={close} />
-      <LeftSidebar isSidebarOpenMobile={isMobileSidebarOpen} />
+      <LeftSidebar
+        isDesktop={isDesktop}
+        isSidebarOpenMobile={isMobileSidebarOpen}
+      />
       <ThemeToggler />
       <TimelineYapContainer />
     </div>

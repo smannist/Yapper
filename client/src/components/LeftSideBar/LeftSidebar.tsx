@@ -1,4 +1,3 @@
-import { useMediaQuery } from "@uidotdev/usehooks";
 import { useQueryClient } from "@tanstack/react-query";
 
 import cn from "@/utils/cn";
@@ -14,11 +13,7 @@ import LeftSidebarSignedIn from "@/components/LeftSidebarSignedIn";
 
 import type { LeftSidebarProps } from "./types";
 
-export const DESKTOP_MIN_WIDTH_PX = 1400;
-export const DESKTOP_MEDIA_QUERY = `(min-width: ${DESKTOP_MIN_WIDTH_PX}px)`;
-
-const LeftSidebar = ({ isSidebarOpenMobile }: LeftSidebarProps) => {
-  const isDesktop = useMediaQuery(DESKTOP_MEDIA_QUERY);
+const LeftSidebar = ({ isDesktop, isSidebarOpenMobile }: LeftSidebarProps) => {
   const queryClient = useQueryClient();
   const { data: session } = useSession();
 
