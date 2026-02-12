@@ -1,1 +1,1 @@
-export { default } from "./TimelinePostContainer";
+export { default } from "./TimelineYapContainer";

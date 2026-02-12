@@ -1,10 +1,5 @@
 import type { TimelineYap } from "@/components/TimelineYap/types";
 
-type YapsCacheEntry = {
-  timestamp: number;
-  data: TimelineYap[];
-};
-
 export const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
@@ -27,8 +22,3 @@ export const isTimelineYap = (value: unknown): value is TimelineYap => {
 
 export const isTimelineYapArray = (value: unknown): value is TimelineYap[] =>
   Array.isArray(value) && value.every(isTimelineYap);
-
-export const isYapsCacheEntry = (value: unknown): value is YapsCacheEntry => {
-  if (!isRecord(value)) return false;
-  return typeof value.timestamp === "number" && isTimelineYapArray(value.data);
-};

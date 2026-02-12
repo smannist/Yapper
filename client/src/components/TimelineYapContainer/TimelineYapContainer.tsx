@@ -5,8 +5,6 @@ import cn from "@/utils/cn";
 import getUrl from "@/utils/getUrl";
 import TimelineYap from "@/components/TimelineYap";
 
-const CACHE_TIME = 24 * 60 * 60 * 1000;
-
 const TimelineYapContainer = () => {
   const {
     data = [],
@@ -15,9 +13,9 @@ const TimelineYapContainer = () => {
     error,
   } = useQuery({
     queryKey: yapsQueryKey(getUrl("/api/yaps")),
-    queryFn: yapsQueryFn(getUrl("/api/yaps"), CACHE_TIME),
-    staleTime: CACHE_TIME,
-    gcTime: CACHE_TIME,
+    queryFn: yapsQueryFn(getUrl("/api/yaps")),
+    staleTime: Infinity,
+    gcTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     refetchOnMount: false,
