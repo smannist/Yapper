@@ -23,7 +23,7 @@ export const createYap = async (
   if (!user) {
     throw new HttpError({
       status: 401,
-      jsonBody: { error: "user not found" },
+      jsonBody: { error: "User not found" },
     });
   }
 

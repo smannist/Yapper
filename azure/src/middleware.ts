@@ -34,7 +34,7 @@ const extractTokenClaims = (
     if (auth === "required") {
       throw new HttpError({
         status: 401,
-        jsonBody: { error: "missing token" },
+        jsonBody: { error: "Missing token" },
       });
     }
     return null;
@@ -50,7 +50,7 @@ const extractTokenClaims = (
     context.warn("Token verification failed", err);
     throw new HttpError({
       status: 401,
-      jsonBody: { error: "token invalid" },
+      jsonBody: { error: "Token invalid" },
     });
   }
 };
@@ -70,7 +70,7 @@ export const middleware = (
     } catch (err) {
       if (err instanceof HttpError) return err.response;
       context.error("Unhandled error", err);
-      return { status: 500, jsonBody: { error: "internal server error" } };
+      return { status: 500, jsonBody: { error: "Internal server error" } };
     }
   };
 };

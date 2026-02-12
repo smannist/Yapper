@@ -23,7 +23,7 @@ export const register = async (
   const alreadyTaken = await findUserByUsername(db, username);
 
   if (alreadyTaken) {
-    return { status: 409, jsonBody: { error: "username already taken" } };
+    return { status: 409, jsonBody: { error: "Username already taken" } };
   }
 
   const passwordHash = await hashPassword(password);
@@ -37,7 +37,7 @@ export const register = async (
   if (!created) {
     throw new HttpError({
       status: 500,
-      jsonBody: { error: "registration failed" },
+      jsonBody: { error: "Registration failed" },
     });
   }
 

@@ -1,9 +1,6 @@
-import type { LeftSidebarButtonProps } from "./types";
+import type { LeftSidebarButtonVariant } from "./types";
 
-export const BUTTON_VARIANT_LABELS: Record<
-  LeftSidebarButtonProps["variant"],
-  string
-> = {
+export const BUTTON_VARIANT_LABELS: Record<LeftSidebarButtonVariant, string> = {
   signIn: "Sign in",
   signOut: "Sign out",
 };

@@ -31,7 +31,7 @@ export const login = async (
   if (!user || !isValid) {
     return {
       status: 401,
-      jsonBody: { error: "invalid username or password" },
+      jsonBody: { error: "Invalid username or password" },
     };
   }
 

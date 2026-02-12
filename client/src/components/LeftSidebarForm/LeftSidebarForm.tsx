@@ -2,8 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { signInMutationKey, signInMutationFn } from "@/mutations/login/login";
-
-import { BUTTON_VARIANT_LABELS } from "@/components/LeftSidebarButton/labels";
+import LeftSidebarButton from "@/components/LeftSidebarButton";
 import {
   writeSessionToStorage,
   sessionQueryKey,
@@ -102,15 +101,17 @@ const LeftSidebarForm = () => {
         {([username, password]) => {
           const canSubmit = hasSignInCredentials(username, password);
           return (
-            <button
+            <LeftSidebarButton
+              variant="signIn"
               type="submit"
-              className={cn("mt-2 text-sm", "yapper-signature-cta")}
+              className={cn("mt-2 text-sm")}
               disabled={signInMutation.isPending || !canSubmit}
-            >
-              {signInMutation.isPending
-                ? SUBMIT_BUTTON_PENDING_LABEL
-                : BUTTON_VARIANT_LABELS.signIn}
-            </button>
+              label={
+                signInMutation.isPending
+                  ? SUBMIT_BUTTON_PENDING_LABEL
+                  : undefined
+              }
+            />
           );
         }}
       </leftSidebarForm.Subscribe>
