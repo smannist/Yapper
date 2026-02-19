@@ -16,7 +16,7 @@
 - Database
   - Azure DB for PostgreSQL
 - Auth
-  - Azure auth providors
+  - JWT-based auth. Access token stored in localStorage.
 - Ambitious ideas
   - Real time pub sub if its not too expensive?
   - Some kind of recommendation algos so user sees targeted Yaps?
